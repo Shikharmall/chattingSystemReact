@@ -1,13 +1,38 @@
-import React from "react";
-import img from "../image/user1.png";
+import React, { useState } from "react";
+import img1 from "../image/user1.png";
+import img from "../image/user.png";
+
+import "../css/scroll.css";
 
 export default function ChattingTyping() {
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0"); // Ensure two digits, pad with leading zero if necessary
+    const minutes = String(now.getMinutes()).padStart(2, "0"); // Ensure two digits, pad with leading zero if necessary
+    return `${hours}:${minutes}`;
+  };
+
+  const [message, setMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
+
+  const sendMessage = () => {
+    const currentTime = getCurrentTime();
+    if (message) {
+      setMessageList((prevMessageList) => [
+        ...prevMessageList,
+        { content: message, time: currentTime },
+      ]);
+    }
+    setMessage("");
+  };
+  console.log(messageList);
+
   return (
-    <div className="w-3/4 h-full relative">
+    <div className="w-3/4 h-full relative overflow-hidden">
       <div className="p-2 flex bg-[#5f5b8e] rounded-tr-lg justify-between items-center justify-center">
         <div className="flex items-center justify-center">
           <img
-            src={img}
+            src={img1}
             alt="userLogo"
             className="rounded-full w-[30px] h-[30px] mr-3"
           />
@@ -33,12 +58,55 @@ export default function ChattingTyping() {
           </svg>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full  border-none outline-none focus:ring-none focus:outline-none ">
+
+      <div
+        className="w-[100%] h-[100%] bg-[#ebebf5] flex flex-col overflow-y-scroll mb-[1150px]"
+        id="custom-scrollbar"
+      >
+        {messageList &&
+          messageList.map((item, index) => (
+            <div key={index}>
+              <div className="my-2 flex justify-end items-center">
+                <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg text-[14px]">
+                  {item.content}
+                  <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
+                    {item.time}
+                  </span>
+                </p>
+                <img
+                  src={img}
+                  alt="userLogo"
+                  className="rounded-full w-[30px] h-[30px] mr-3"
+                />
+              </div>
+
+              <div className="my-2 flex justify-start items-center">
+                <img
+                  src={img1}
+                  alt="userLogo"
+                  className="rounded-full w-[30px] h-[30px] ml-3"
+                />
+                <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[14px]">
+                  {item.content}
+                  <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
+                    {item.time}
+                  </span>
+                </p>
+              </div>
+            </div>
+          ))}
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-full border-none outline-none focus:ring-none focus:outline-none ">
         <div className="relative h-[50px]">
           <input
             placeholder="Type a message"
             className="bg-gray-300 w-full h-full p-3 rounded-br-lg pr-14"
             style={{ outline: "none" }}
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
           />
 
           <label htmlFor="document">
@@ -93,6 +161,9 @@ export default function ChattingTyping() {
             fill="none"
             className="absolute right-0 top-0 m-2 cursor-pointer bg-gray-400 rounded-full p-2"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              sendMessage();
+            }}
           >
             <g clip-path="url(#clip0_429_11051)">
               <path
