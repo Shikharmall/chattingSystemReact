@@ -3,47 +3,8 @@ import img from "../image/user.png";
 
 import "../css/scroll.css";
 
-export default function SideBar() {
-  const userList = [
-    {
-      name: "John Doe",
-      image: "src/image/user4.png",
-    },
-    {
-      name: "Jane Smith",
-      image: "src/image/user2.png",
-    },
-    {
-      name: "Michael Johnson",
-      image: "src/image/user3.png",
-    },
-    {
-      name: "Emily Williams",
-      image: "src/image/user1.png",
-    },
-    {
-      name: "David Brown",
-      image: "src/image/user5.png",
-    },
-    {
-      name: "Sarah Davis",
-      image: "src/image/user7.png",
-    },
-    {
-      name: "Matthew Wilson",
-      image: "src/image/user6.png",
-    },
-    {
-      name: "Olivia Taylor",
-      image: "src/image/user8.png",
-    },
-    {
-      name: "Christopher Martinez",
-      image: "src/image/user9.png",
-    },
-  ];
-
-  const [userOpen, setUserOpen] = useState("John Doe");
+export default function SideBar({ userList, userOpen, currentUserFunc }) {
+  //const [userOpen, setUserOpen] = useState("John Doe");
   const [search, setSearch] = useState("");
 
   const filteredUsers = userList.filter((item) => {
@@ -52,10 +13,6 @@ export default function SideBar() {
       item.name.toLowerCase().includes(search.toLowerCase())
     );
   });
-
-  useEffect(() => {
-    setUserOpen(userList[0].name);
-  }, []);
 
   return (
     <div className="w-1/4 bg-[#3e3c62] h-[100%] rounded-l-lg flex flex-col">
@@ -112,7 +69,7 @@ export default function SideBar() {
               }`}
               key={index}
               onClick={() => {
-                setUserOpen(item?.name);
+                currentUserFunc(item?.name,item?.image);
               }}
             >
               <img

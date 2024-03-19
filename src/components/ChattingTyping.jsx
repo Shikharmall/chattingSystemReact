@@ -4,7 +4,9 @@ import img from "../image/user.png";
 
 import "../css/scroll.css";
 
-export default function ChattingTyping() {
+export default function ChattingTyping({
+  userOpenDetails
+}) {
   const getCurrentTime = () => {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, "0"); // Ensure two digits, pad with leading zero if necessary
@@ -25,19 +27,18 @@ export default function ChattingTyping() {
     }
     setMessage("");
   };
-  console.log(messageList);
 
   return (
-    <div className="w-3/4 h-full relative overflow-hidden">
+    <div className="w-3/4 h-[100%] relative">
       <div className="p-2 flex bg-[#5f5b8e] rounded-tr-lg justify-between items-center justify-center">
         <div className="flex items-center justify-center">
           <img
-            src={img1}
+            src={userOpenDetails[0].image}
             alt="userLogo"
             className="rounded-full w-[30px] h-[30px] mr-3"
           />
           <p className="text-white text-opacity-90 font-semibold ">
-            Shikhar Mall
+            {userOpenDetails[0].name}
           </p>
         </div>
         <div>
@@ -60,9 +61,11 @@ export default function ChattingTyping() {
       </div>
 
       <div
-        className="w-[100%] h-[100%] bg-[#ebebf5] flex flex-col overflow-y-scroll mb-[1150px]"
+        className="w-[100%] h-[100%] flex flex-col overflow-y-scroll"
         id="custom-scrollbar"
       >
+        {" "}
+        {/* bg-[#ebebf5] */}
         {messageList &&
           messageList.map((item, index) => (
             <div key={index}>
@@ -82,7 +85,7 @@ export default function ChattingTyping() {
 
               <div className="my-2 flex justify-start items-center">
                 <img
-                  src={img1}
+                  src={userOpenDetails[0].image}
                   alt="userLogo"
                   className="rounded-full w-[30px] h-[30px] ml-3"
                 />
