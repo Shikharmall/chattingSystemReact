@@ -3,6 +3,7 @@ import ChattingTyping from "../components/ChattingTyping";
 import SideBar from "../components/SideBar";
 
 export default function ChatPage() {
+
   const userList = [
     {
       name: "John Doe",
@@ -60,8 +61,8 @@ export default function ChatPage() {
   console.log(userOpenDetails);
 
   return (
-    <div className="bg-[#a8bcff] w-[100vw] h-[100vh] flex justify-center items-center">
-      <div className="bg-white w-[70vw] h-[80vh] rounded-lg shadow-lg">
+    <div className="bg-[#a8bcff] w-[100vw] h-[100vh] flex justify-center items-center ">
+      <div className="bg-white w-[70vw] h-[80vh] rounded-lg shadow-lg overflow-hidden">
         <div className="flex w-full h-full">
           <SideBar
             userList={userList}
