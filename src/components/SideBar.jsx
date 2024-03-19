@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img from "../image/user.png";
 
 import "../css/scroll.css";
@@ -43,7 +43,7 @@ export default function SideBar() {
     },
   ];
 
-  const [userOpen, setUserOpen] = useState(0);
+  const [userOpen, setUserOpen] = useState("John Doe");
   const [search, setSearch] = useState("");
 
   const filteredUsers = userList.filter((item) => {
@@ -52,6 +52,10 @@ export default function SideBar() {
       item.name.toLowerCase().includes(search.toLowerCase())
     );
   });
+
+  useEffect(() => {
+    setUserOpen(userList[0].name);
+  }, []);
 
   return (
     <div className="w-1/4 bg-[#3e3c62] h-[100%] rounded-l-lg flex flex-col">
@@ -70,7 +74,7 @@ export default function SideBar() {
           </p>*/}
         </div>
       </div>
-      <div className=" flex">
+      <div className="flex relative">
         <input
           type="text"
           placeholder="Find a user"
@@ -81,17 +85,34 @@ export default function SideBar() {
             setSearch(e.target.value);
           }}
         />
+
+        {search === "" ? null : (
+          <svg
+            fill="#fff"
+            width="20px"
+            height="20px"
+            viewBox="-3.5 0 19 19"
+            xmlns="http://www.w3.org/2000/svg"
+            class="cf-icon-svg"
+            className="absolute right-0 top-1 m-1 cursor-pointer"
+            onClick={() => {
+              setSearch("");
+            }}
+          >
+            <path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z" />
+          </svg>
+        )}
       </div>
       <div className="overflow-y-scroll" id="custom-scrollbar">
         {filteredUsers &&
           filteredUsers.map((item, index) => (
             <div
               className={`p-3 flex items-center cursor-pointer ${
-                index === userOpen ? "bg-[#2f2c53]" : ""
+                item.name === userOpen ? "bg-[#2f2c53]" : ""
               }`}
               key={index}
               onClick={() => {
-                setUserOpen(index);
+                setUserOpen(item?.name);
               }}
             >
               <img
@@ -110,8 +131,8 @@ export default function SideBar() {
             </div>
           ))}
       </div>
-      {filteredUsers.length > 0 ? null : (
-        <div className={`p-3 flex items-center${1 ? "bg-[#2f2c53]" : ""}`}>
+      {filteredUsers && filteredUsers.length > 0 ? null : (
+        <div className={`p-3 flex items-center justify-center bg-[#2f2c53]}`}>
           <div className="flex justify-center items-center">
             <p className="text-white text-opacity-40 font-normal text-[14px]">
               No user found.
