@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import img from "../image/user.png";
+import React, { useEffect, useState } from "react";
 import "../css/scroll.css";
+import MessageContainer from "./MessageContainer";
+import ChattingHeader from "./ChattingHeader";
 
 export default function ChattingTyping({
   userOpenDetails,
@@ -16,81 +17,31 @@ export default function ChattingTyping({
 
   const [message, setMessage] = useState("");
 
+  /*useEffect(() => {
+    document.querySelector("custom-scrollbar").style.scrollBehavior = "auto";
+    window.scroll({ bottom: 0 });
+    document.querySelector("custom-scrollbar").style.scrollBehavior = "";
+  }, [messageList]); */
+
+  useEffect(() => {
+    const customScrollbar = document.getElementById("custom-scrollbar");
+    console.log(customScrollbar);
+    customScrollbar.style.scrollBehavior = "auto";
+    window.scroll({ top: customScrollbar.scrollHeight, behavior: "auto" });
+    customScrollbar.style.scrollBehavior = "";
+    /*if (customScrollbar) {
+    }*/
+    // console.log("Message list updated");
+  }, [messageList]);
+
   return (
     <div className="w-3/4 h-[100%] relative">
-      <div className="p-2 flex bg-[#5f5b8e] rounded-tr-lg justify-between items-center justify-center">
-        <div className="flex items-center justify-center">
-          <img
-            src={userOpenDetails[0]?.image}
-            alt="userLogo"
-            className="rounded-full w-[30px] h-[30px] mr-3"
-          />
-          <p className="text-white text-opacity-90 font-semibold ">
-            {userOpenDetails[0]?.name}
-          </p>
-        </div>
-        <div>
-          <svg
-            fill="#fff"
-            className="cursor-pointer"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20px"
-            height="20px"
-            viewBox="0 0 52 52"
-            enable-background="new 0 0 52 52"
-            xml:space="preserve"
-          >
-            <path
-              d="M8,20c3.3,0,6,2.7,6,6s-2.7,6-6,6s-6-2.7-6-6S4.7,20,8,20z M26,20c3.3,0,6,2.7,6,6s-2.7,6-6,6s-6-2.7-6-6
-	S22.7,20,26,20z M44,20c3.3,0,6,2.7,6,6s-2.7,6-6,6s-6-2.7-6-6S40.7,20,44,20z"
-            />
-          </svg>
-        </div>
-      </div>
+      <ChattingHeader userOpenDetails={userOpenDetails} />
 
-      <div
-        className="w-[100%] h-[83%] flex flex-col overflow-y-scroll"
-        id="custom-scrollbar"
-      >
-        {" "}
-        {/* bg-[#ebebf5] */}
-        {messageList &&
-          messageList.map((item, index) => (
-            <div key={index}>
-              {item.userId === userOpenDetails[0]?.userId ? (
-                <>
-                  <div className="my-2 flex justify-end items-center">
-                    <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg text-[14px]">
-                      {item.content}
-                      <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
-                        {item.time}
-                      </span>
-                    </p>
-                    <img
-                      src={img}
-                      alt="userLogo"
-                      className="rounded-full w-[30px] h-[30px] mr-3"
-                    />
-                  </div>
-
-                  <div className="my-2 flex justify-start items-center">
-                    <img
-                      src={userOpenDetails[0].image}
-                      alt="userLogo"
-                      className="rounded-full w-[30px] h-[30px] ml-3"
-                    />
-                    <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[14px]">
-                      {item.content}
-                      <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
-                        {item.time}
-                      </span>
-                    </p>
-                  </div>
-                </>
-              ) : null}
-            </div>
-          ))}
-      </div>
+      <MessageContainer
+        messageList={messageList}
+        userOpenDetails={userOpenDetails}
+      />
 
       <div className="absolute bottom-0 left-0 w-full border-none outline-none focus:ring-none focus:outline-none ">
         <div className="relative h-[50px]">
@@ -157,7 +108,11 @@ export default function ChattingTyping({
             className="absolute right-0 top-0 m-2 cursor-pointer bg-gray-400 rounded-full p-2"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              sendMessage(message, getCurrentTime(), userOpenDetails[0]?.userId);
+              sendMessage(
+                message,
+                getCurrentTime(),
+                userOpenDetails[0]?.userId
+              );
               setMessage("");
             }}
           >
