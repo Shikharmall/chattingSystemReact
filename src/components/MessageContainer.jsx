@@ -7,6 +7,7 @@ export default function MessageContainer({
   isImage,
   removeImg,
 }) {
+  
   /*useEffect(() => {
     document.querySelector("custom-scrollbar").style.scrollBehavior = "auto";
     window.scroll({ bottom: 0 });
@@ -19,14 +20,15 @@ export default function MessageContainer({
     customScrollbar.style.scrollBehavior = "auto";
     window.scroll({ top: customScrollbar.scrollHeight, behavior: "auto" });
     customScrollbar.style.scrollBehavior = "";
-    /*if (customScrollbar) {
-    }*/
+    
     // console.log("Message list updated");
   }, [messageList]);
 
+ 
+
   return (
     <div
-      className="w-[100%] h-[83%] flex flex-col overflow-y-scroll"
+      className="w-[100%] h-[80%] lg-[83%] flex flex-col overflow-y-scroll"
       id="custom-scrollbar"
     >
       {/* h-[80%] */}
@@ -57,13 +59,16 @@ export default function MessageContainer({
         <>
           {messageList &&
             messageList.map((item, index) => (
-              <div key={index}>
+              <div key={index} >
                 {item.id === userOpenDetails[0]?.id ? (
                   <>
-                    <div className="my-2 flex justify-end items-end" >
+                    <div className="my-2 flex justify-end items-end">
                       {item?.uploadImage ? (
                         <>
-                          <div className="p-2 bg-blue-500 mr-2 ml-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
+                          <div
+                            className="p-2 bg-blue-500 mr-2 ml-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center"
+                            style={{ maxWidth: "200px" }}
+                          >
                             <div>
                               <img
                                 src={item.uploadImage}
@@ -83,8 +88,10 @@ export default function MessageContainer({
                         </>
                       ) : (
                         <>
-                          <div className="p-2 bg-blue-500 mr-2 ml-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
-                            
+                          <div
+                            className="p-2 bg-blue-500 mr-2 ml-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center"
+                            style={{ maxWidth: "200px" }}
+                          >
                             <p className="flex justify-between justify-center items-end p-1 text-[14px]">
                               <span className="text-white text-opacity-90 font-semibold mr-0">
                                 {item.content}
@@ -103,23 +110,28 @@ export default function MessageContainer({
                       />
                     </div>
                     {item?.uploadImage ? null : (
-                      <div className="my-2 flex justify-start items-center" style={{ maxWidth: "200px" }}>
+                      <div
+                        className="my-2 flex justify-start items-center"
+                        style={{ maxWidth: "200px" }}
+                      >
                         <img
                           src={userOpenDetails[0].image}
                           alt="userLogo"
                           className="rounded-full w-[30px] h-[30px] ml-3"
                         />
-                        <div className="p-2 bg-blue-500 ml-2 mr-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
-                            
-                            <p className="flex justify-between justify-center items-end p-1 text-[14px]">
-                              <span className="text-white text-opacity-90 font-semibold mr-0">
-                                {item.content}
-                              </span>
-                              <span className="text-white text-opacity-90 font-semibold  bg-blue-500 ml-1 rounded-tl-lg rounded-br-lg text-[10px]">
-                                {item.time}
-                              </span>
-                            </p>
-                          </div>
+                        <div
+                          className="p-2 bg-blue-500 ml-2 mr-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center"
+                          style={{ maxWidth: "200px" }}
+                        >
+                          <p className="flex justify-between justify-center items-end p-1 text-[14px]">
+                            <span className="text-white text-opacity-90 font-semibold mr-0">
+                              {item.content}
+                            </span>
+                            <span className="text-white text-opacity-90 font-semibold  bg-blue-500 ml-1 rounded-tl-lg rounded-br-lg text-[10px]">
+                              {item.time}
+                            </span>
+                          </p>
+                        </div>
                       </div>
                     )}
                   </>

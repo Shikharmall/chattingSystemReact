@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import img from "../image/user.png";
 
 import "../css/scroll.css";
@@ -82,7 +82,7 @@ export default function SideBar({
               />
               <div className="inline md:hidden">
                 <p className="text-white text-opacity-90 font-semibold">
-                  {item.name.substring(0,2).toUpperCase()}
+                  {item.name.substring(0, 2).toUpperCase()}
                 </p>
               </div>
               <div className="hidden md:inline ">

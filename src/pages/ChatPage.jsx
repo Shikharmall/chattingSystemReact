@@ -1,9 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChattingTyping from "../components/ChattingTyping";
 import SideBar from "../components/SideBar";
 import userList from "../db/UserData";
-
-//const ChattingHeaderContext = createContext();
 
 export default function ChatPage() {
   const [usersData, setUsersData] = useState([]);
@@ -51,8 +49,6 @@ export default function ChatPage() {
     ]);
   };
 
-  console.log(messageList);
-
   return (
     <div className="bg-[#a8bcff] w-[100vw] h-[100vh] flex justify-center items-center ">
       <div className="bg-white w-[90vw] h-[80vh] rounded-lg shadow-lg lg:w-[70vw]">
@@ -69,18 +65,8 @@ export default function ChatPage() {
             messageList={messageList}
             clearChat={clearChat}
           />
-          {/*<ChattingHeaderContext.Provider
-            value={{ userOpenDetails, sendMessage, messageList, clearChat }}
-          >
-  </ChattingHeaderContext.Provider>*/}
         </div>
       </div>
     </div>
   );
 }
-
-//export const useUserContext = () => useContext(UserContext);
-
-//export const useChattingHeaderContext = () => {
-//  useContext(ChattingHeaderContext);
-//};

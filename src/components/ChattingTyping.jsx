@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../css/scroll.css";
 import MessageContainer from "./MessageContainer";
 import ChattingHeader from "./ChattingHeader";
-//import { useChattingHeaderContext } from "../pages/ChatPage";
 
 export default function ChattingTyping({
   userOpenDetails,
@@ -53,7 +52,7 @@ export default function ChattingTyping({
         <div className="relative h-[50px]">
           <input
             placeholder="Type a message"
-            className="bg-gray-300 w-full h-full p-3 rounded-br-lg pr-14"
+            className="bg-gray-300 w-full h-full p-3 rounded-br-lg pr-20"
             style={{ outline: "none" }}
             value={message}
             onChange={(e) => {
