@@ -6,8 +6,8 @@ import userList from "../db/UserData";
 export default function ChatPage() {
   const [userOpenDetails, setUserOpenDetails] = useState([]);
 
-  const currentUserFunc = (name, image, userId) => {
-    setUserOpenDetails([{ name: name, image: image, userId: userId }]);
+  const currentUserFunc = (name, image, id) => {
+    setUserOpenDetails([{ name: name, image: image, id: id }]);
   };
 
   useEffect(() => {
@@ -16,17 +16,17 @@ export default function ChatPage() {
       {
         name: userList[0]?.name,
         image: userList[0]?.image,
-        userId: userList[0]?.id,
+        id: userList[0]?.id,
       },
     ]);
   }, []);
 
   const [messageList, setMessageList] = useState([]);
 
-  const sendMessage = (message, currentTime, userId) => {
+  const sendMessage = (message, currentTime, id) => {
     setMessageList((prevMessageList) => [
       ...prevMessageList,
-      { content: message, time: currentTime, userId: userId },
+      { content: message, time: currentTime, id: id },
     ]);
   };
 
@@ -38,6 +38,7 @@ export default function ChatPage() {
             userList={userList}
             currentUserFunc={currentUserFunc}
             userOpenDetails={userOpenDetails}
+            messageList={messageList}
           />
           <ChattingTyping
             userOpenDetails={userOpenDetails}

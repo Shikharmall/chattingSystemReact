@@ -8,7 +8,7 @@ export default function SideBar({
   currentUserFunc,
   userOpenDetails,
 }) {
-  //const [userOpen, setUserOpen] = useState("John Doe");
+  
   const [search, setSearch] = useState("");
 
   const filteredUsers = userList.filter((item) => {
@@ -86,7 +86,7 @@ export default function SideBar({
                   {item.name}
                 </p>
                 <p className="text-white text-opacity-40 font-normal text-[14px]">
-                  Hello bhai
+                  {item?.lastMessage}
                 </p>
               </div>
             </div>

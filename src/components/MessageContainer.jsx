@@ -10,7 +10,7 @@ export default function MessageContainer({ messageList, userOpenDetails }) {
       {messageList &&
         messageList.map((item, index) => (
           <div key={index}>
-            {item.userId === userOpenDetails[0]?.userId ? (
+            {item.id === userOpenDetails[0]?.id ? (
               <>
                 <div className="my-2 flex justify-end items-center">
                   <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg text-[14px]">

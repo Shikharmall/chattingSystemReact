@@ -111,7 +111,7 @@ export default function ChattingTyping({
               sendMessage(
                 message,
                 getCurrentTime(),
-                userOpenDetails[0]?.userId
+                userOpenDetails[0]?.id
               );
               setMessage("");
             }}
