@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import img1 from "../image/user1.png";
 import img from "../image/user.png";
-
 import "../css/scroll.css";
 
 export default function ChattingTyping({
-  userOpenDetails
+  userOpenDetails,
+  sendMessage,
+  messageList,
 }) {
   const getCurrentTime = () => {
     const now = new Date();
@@ -15,30 +15,18 @@ export default function ChattingTyping({
   };
 
   const [message, setMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
-
-  const sendMessage = () => {
-    const currentTime = getCurrentTime();
-    if (message) {
-      setMessageList((prevMessageList) => [
-        ...prevMessageList,
-        { content: message, time: currentTime },
-      ]);
-    }
-    setMessage("");
-  };
 
   return (
     <div className="w-3/4 h-[100%] relative">
       <div className="p-2 flex bg-[#5f5b8e] rounded-tr-lg justify-between items-center justify-center">
         <div className="flex items-center justify-center">
           <img
-            src={userOpenDetails[0].image}
+            src={userOpenDetails[0]?.image}
             alt="userLogo"
             className="rounded-full w-[30px] h-[30px] mr-3"
           />
           <p className="text-white text-opacity-90 font-semibold ">
-            {userOpenDetails[0].name}
+            {userOpenDetails[0]?.name}
           </p>
         </div>
         <div>
@@ -165,7 +153,8 @@ export default function ChattingTyping({
             className="absolute right-0 top-0 m-2 cursor-pointer bg-gray-400 rounded-full p-2"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              sendMessage();
+              sendMessage(message, getCurrentTime());
+              setMessage("");
             }}
           >
             <g clip-path="url(#clip0_429_11051)">

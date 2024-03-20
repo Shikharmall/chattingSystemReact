@@ -3,7 +3,11 @@ import img from "../image/user.png";
 
 import "../css/scroll.css";
 
-export default function SideBar({ userList, userOpen, currentUserFunc }) {
+export default function SideBar({
+  userList,
+  currentUserFunc,
+  userOpenDetails,
+}) {
   //const [userOpen, setUserOpen] = useState("John Doe");
   const [search, setSearch] = useState("");
 
@@ -65,11 +69,11 @@ export default function SideBar({ userList, userOpen, currentUserFunc }) {
           filteredUsers.map((item, index) => (
             <div
               className={`p-3 flex items-center cursor-pointer ${
-                item.name === userOpen ? "bg-[#2f2c53]" : ""
+                item.name === userOpenDetails[0]?.name ? "bg-[#2f2c53]" : ""
               }`}
               key={index}
               onClick={() => {
-                currentUserFunc(item?.name,item?.image);
+                currentUserFunc(item?.name, item?.image);
               }}
             >
               <img
