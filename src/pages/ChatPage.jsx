@@ -38,6 +38,17 @@ export default function ChatPage() {
     ]);
   };
 
+  const clearChat = (id) => {
+    setMessageList((prevList) =>
+      prevList.filter((message) => message.id !== id)
+    );
+    setUsersData([
+      ...usersData.slice(0, id - 1),
+      { ...usersData[id - 1], lastMessage: "Type a message" },
+      ...usersData.slice(id),
+    ]);
+  };
+
   return (
     <div className="bg-[#a8bcff] w-[100vw] h-[100vh] flex justify-center items-center ">
       <div className="bg-white w-[70vw] h-[80vh] rounded-lg shadow-lg ">
@@ -52,6 +63,7 @@ export default function ChatPage() {
             userOpenDetails={userOpenDetails}
             sendMessage={sendMessage}
             messageList={messageList}
+            clearChat={clearChat}
           />
         </div>
       </div>

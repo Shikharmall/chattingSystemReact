@@ -7,6 +7,7 @@ export default function ChattingTyping({
   userOpenDetails,
   sendMessage,
   messageList,
+  clearChat
 }) {
   const getCurrentTime = () => {
     const now = new Date();
@@ -36,7 +37,7 @@ export default function ChattingTyping({
 
   return (
     <div className="w-3/4 h-[100%] relative">
-      <ChattingHeader userOpenDetails={userOpenDetails} />
+      <ChattingHeader userOpenDetails={userOpenDetails} clearChat={clearChat}/>
 
       <MessageContainer
         messageList={messageList}
