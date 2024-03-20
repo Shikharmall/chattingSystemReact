@@ -1,4 +1,4 @@
-# Chatting System (React JS(VITE) + Tailwind CSS)
+# Responsive Chatting System (React JS(VITE) + Tailwind CSS)
 
 ## Clone Project
 
