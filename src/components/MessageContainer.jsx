@@ -111,7 +111,7 @@ export default function MessageContainer({
                           className="rounded-full w-[30px] h-[30px] ml-3"
                         />
                         <div
-                          className="p-2 bg-blue-500 ml-2 mr-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center"
+                          className="p-2 bg-blue-500 ml-2 mr-1 rounded-tl-lg rounded-br-lg flex flex-col justify-center"
                           style={{ maxWidth: "200px" }}
                         >
                           <p className="flex justify-between justify-center items-end p-1 text-[14px]">
