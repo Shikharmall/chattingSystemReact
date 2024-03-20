@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import img from "../image/user.png";
 
 export default function MessageContainer({ messageList, userOpenDetails }) {
+  /*useEffect(() => {
+    document.querySelector("custom-scrollbar").style.scrollBehavior = "auto";
+    window.scroll({ bottom: 0 });
+    document.querySelector("custom-scrollbar").style.scrollBehavior = "";
+  }, [messageList]); */
+
+  useEffect(() => {
+    const customScrollbar = document.getElementById("custom-scrollbar");
+    //console.log(customScrollbar);
+    customScrollbar.style.scrollBehavior = "auto";
+    window.scroll({ top: customScrollbar.scrollHeight, behavior: "auto" });
+    customScrollbar.style.scrollBehavior = "";
+    /*if (customScrollbar) {
+    }*/
+    // console.log("Message list updated");
+  }, [messageList]);
+
   return (
     <div
       className="w-[100%] h-[83%] flex flex-col overflow-y-scroll"

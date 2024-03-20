@@ -1,21 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 
 export default function ChattingHeader({ userOpenDetails, clearChat }) {
-  const [open, setOpen] = useState(true);
-  const ref = useRef(null);
+  const [open, setOpen] = useState(false);
+  let menuRef = useRef();
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
+    let handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
         setOpen(false);
       }
-    }
-
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
     };
-  }, [ref]);
+
+    document.addEventListener("click", handler);
+
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  });
 
   return (
     <div className="p-2 flex bg-[#5f5b8e] rounded-tr-lg justify-between items-center justify-center">
@@ -29,7 +30,7 @@ export default function ChattingHeader({ userOpenDetails, clearChat }) {
           {userOpenDetails[0]?.name}
         </p>
       </div>
-      <div className="relative">
+      <div className="relative" ref={menuRef}>
         <svg
           fill="#fff"
           className="cursor-pointer"
@@ -37,11 +38,10 @@ export default function ChattingHeader({ userOpenDetails, clearChat }) {
           width="20px"
           height="20px"
           viewBox="0 0 52 52"
-          enableBackground="new 0 0 52 52" // Corrected attribute name
-          xmlSpace="preserve" // Corrected attribute name
+          enableBackground="new 0 0 52 52"
+          xmlSpace="preserve"
           onClick={() => {
             setOpen(!open);
-            console.log("open state:", open);
           }}
         >
           <path
@@ -55,7 +55,6 @@ export default function ChattingHeader({ userOpenDetails, clearChat }) {
             className={`absolute top-7 right-0 w-[200px] h-[120px] justify-center flex flex-col bg-gray-100 overflow-hidden cursor-pointer rounded-lg shadow-md transition-opacity duration-300 ${
               open ? "opacity-100" : "opacity-0"
             }`}
-            //ref={ref}
           >
             <p
               className="p-2 flex text-gray-400 font-semibold hover:bg-gray-300 text-sm"

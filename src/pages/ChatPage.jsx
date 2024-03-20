@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import ChattingTyping from "../components/ChattingTyping";
 import SideBar from "../components/SideBar";
 import userList from "../db/UserData";
+
+//const ChattingHeaderContext = createContext();
 
 export default function ChatPage() {
   const [usersData, setUsersData] = useState([]);
@@ -65,8 +67,18 @@ export default function ChatPage() {
             messageList={messageList}
             clearChat={clearChat}
           />
+          {/*<ChattingHeaderContext.Provider
+            value={{ userOpenDetails, sendMessage, messageList, clearChat }}
+          >
+  </ChattingHeaderContext.Provider>*/}
         </div>
       </div>
     </div>
   );
 }
+
+//export const useUserContext = () => useContext(UserContext);
+
+//export const useChattingHeaderContext = () => {
+//  useContext(ChattingHeaderContext);
+//};
