@@ -63,7 +63,7 @@ export default function MessageContainer({
                     <div className="my-2 flex justify-end items-end" >
                       {item?.uploadImage ? (
                         <>
-                          <div className="p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
+                          <div className="p-2 bg-blue-500 mr-2 ml-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
                             <div>
                               <img
                                 src={item.uploadImage}
@@ -83,12 +83,17 @@ export default function MessageContainer({
                         </>
                       ) : (
                         <>
-                          <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg text-[14px]" style={{ maxWidth: "200px" }} >
-                            {item.content}
-                            <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
-                              {item.time}
-                            </span>
-                          </p>
+                          <div className="p-2 bg-blue-500 mr-2 ml-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
+                            
+                            <p className="flex justify-between justify-center items-end p-1 text-[14px]">
+                              <span className="text-white text-opacity-90 font-semibold mr-0">
+                                {item.content}
+                              </span>
+                              <span className="text-white text-opacity-90 font-semibold  bg-blue-500 ml-1 rounded-tl-lg rounded-br-lg text-[10px]">
+                                {item.time}
+                              </span>
+                            </p>
+                          </div>
                         </>
                       )}
                       <img
@@ -104,12 +109,17 @@ export default function MessageContainer({
                           alt="userLogo"
                           className="rounded-full w-[30px] h-[30px] ml-3"
                         />
-                        <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[14px]">
-                          {item.content}
-                          <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
-                            {item.time}
-                          </span>
-                        </p>
+                        <div className="p-2 bg-blue-500 ml-2 mr-1 rounded-tr-lg rounded-bl-lg flex flex-col justify-center" style={{ maxWidth: "200px" }}>
+                            
+                            <p className="flex justify-between justify-center items-end p-1 text-[14px]">
+                              <span className="text-white text-opacity-90 font-semibold mr-0">
+                                {item.content}
+                              </span>
+                              <span className="text-white text-opacity-90 font-semibold  bg-blue-500 ml-1 rounded-tl-lg rounded-br-lg text-[10px]">
+                                {item.time}
+                              </span>
+                            </p>
+                          </div>
                       </div>
                     )}
                   </>
