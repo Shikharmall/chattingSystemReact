@@ -8,7 +8,6 @@ export default function SideBar({
   currentUserFunc,
   userOpenDetails,
 }) {
-  
   const [search, setSearch] = useState("");
 
   const filteredUsers = userList.filter((item) => {
@@ -21,7 +20,7 @@ export default function SideBar({
   return (
     <div className="w-1/4 bg-[#3e3c62] h-[100%] rounded-l-lg flex flex-col">
       <div className="p-3 flex bg-[#2f2c53] rounded-tl-lg justify-between">
-        <p className="text-white text-opacity-90 font-semibold">
+        <p className="text-white text-opacity-90 font-semibold hidden lg:inline">
           Chatting System
         </p>
         <div className="flex items-center justify-center">
@@ -81,7 +80,12 @@ export default function SideBar({
                 alt="userLogo"
                 className="rounded-full w-[30px] h-[30px] m-1 mr-3"
               />
-              <div>
+              <div className="inline lg:hidden">
+                <p className="text-white text-opacity-90 font-semibold">
+                  {item.name.substring(0,2).toUpperCase()}
+                </p>
+              </div>
+              <div className="hidden lg:inline">
                 <p className="text-white text-opacity-90 font-semibold">
                   {item.name}
                 </p>
