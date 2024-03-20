@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar";
 import userList from "../db/UserData";
 
 export default function ChatPage() {
+  const [usersData, setUsersData] = useState([]);
   const [userOpenDetails, setUserOpenDetails] = useState([]);
 
   const currentUserFunc = (name, image, id) => {
@@ -11,6 +12,7 @@ export default function ChatPage() {
   };
 
   useEffect(() => {
+    setUsersData([...userList]);
     setUserOpenDetails([
       ...userOpenDetails,
       {
@@ -28,6 +30,12 @@ export default function ChatPage() {
       ...prevMessageList,
       { content: message, time: currentTime, id: id },
     ]);
+
+    setUsersData([
+      ...usersData.slice(0, id - 1),
+      { ...usersData[id - 1], lastMessage: message },
+      ...usersData.slice(id),
+    ]);
   };
 
   return (
@@ -35,7 +43,7 @@ export default function ChatPage() {
       <div className="bg-white w-[70vw] h-[80vh] rounded-lg shadow-lg ">
         <div className="flex w-full h-full">
           <SideBar
-            userList={userList}
+            userList={usersData}
             currentUserFunc={currentUserFunc}
             userOpenDetails={userOpenDetails}
             messageList={messageList}

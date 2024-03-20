@@ -9,6 +9,7 @@ const userList = [
     id: 2,
     name: "Jane Smith",
     image: "https://robohash.org/Sheldon.png?set=set4",
+    lastMessage: "Type a message"
   },
   {
     id: 3,
