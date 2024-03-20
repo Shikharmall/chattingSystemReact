@@ -27,10 +27,10 @@ export default function ChatPage() {
 
   const [messageList, setMessageList] = useState([]);
 
-  const sendMessage = (message, currentTime, id) => {
+  const sendMessage = (message, currentTime, id, uploadImage) => {
     setMessageList((prevMessageList) => [
       ...prevMessageList,
-      { content: message, time: currentTime, id: id },
+      { content: message, time: currentTime, id: id, uploadImage: uploadImage },
     ]);
 
     setUsersData([
@@ -50,6 +50,8 @@ export default function ChatPage() {
       ...usersData.slice(id),
     ]);
   };
+
+  console.log(messageList);
 
   return (
     <div className="bg-[#a8bcff] w-[100vw] h-[100vh] flex justify-center items-center ">

@@ -19,6 +19,24 @@ export default function ChattingTyping({
   };
 
   const [message, setMessage] = useState("");
+  const [isImage, setIsImage] = useState(null);
+
+  //const [image, setImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setIsImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImg = () =>{
+    setIsImage(null);
+  }
 
   return (
     <div className="w-3/4 h-[100%] relative">
@@ -27,6 +45,8 @@ export default function ChattingTyping({
       <MessageContainer
         messageList={messageList}
         userOpenDetails={userOpenDetails}
+        isImage={isImage}
+        removeImg={removeImg}
       />
 
       <div className="absolute bottom-0 left-0 w-full border-none outline-none focus:ring-none focus:outline-none ">
@@ -84,7 +104,13 @@ export default function ChattingTyping({
             </svg>
           </label>
 
-          <input type="file" accept="image/*" id="image" className="hidden" />
+          <input
+            type="file"
+            accept="image/*"
+            id="image"
+            className="hidden"
+            onChange={handleImageChange}
+          />
 
           <svg
             width="35px"
@@ -94,7 +120,8 @@ export default function ChattingTyping({
             className="absolute right-0 top-0 m-2 cursor-pointer bg-gray-400 rounded-full p-2"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              sendMessage(message, getCurrentTime(), userOpenDetails[0]?.id);
+              sendMessage(message, getCurrentTime(), userOpenDetails[0]?.id, isImage);
+              setIsImage(null);
               setMessage("");
             }}
           >

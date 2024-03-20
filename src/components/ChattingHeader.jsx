@@ -60,6 +60,7 @@ export default function ChattingHeader({ userOpenDetails, clearChat }) {
               className="p-2 flex text-gray-400 font-semibold hover:bg-gray-300 text-sm"
               onClick={() => {
                 clearChat(userOpenDetails[0]?.id);
+                setOpen(false);
               }}
             >
               Clear Chat
