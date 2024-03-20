@@ -61,7 +61,7 @@ export default function ChattingTyping({
       </div>
 
       <div
-        className="w-[100%] h-[100%] flex flex-col overflow-y-scroll"
+        className="w-[100%] h-[83%] flex flex-col overflow-y-scroll"
         id="custom-scrollbar"
       >
         {" "}
