@@ -34,9 +34,9 @@ export default function ChattingTyping({
     }
   };
 
-  const removeImg = () =>{
+  const removeImg = () => {
     setIsImage(null);
-  }
+  };
 
   return (
     <div className="w-3/4 h-[100%] relative">
@@ -61,7 +61,7 @@ export default function ChattingTyping({
             }}
           />
 
-          <label htmlFor="document">
+          {/*<label htmlFor="document">
             <svg
               width=" 25px"
               height="25px"
@@ -81,10 +81,10 @@ export default function ChattingTyping({
           <input
             type="file"
             //accept="image/*"
-            accept=".doc, .docx, .pdf, .txt, .rtf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf, text/plain, application/rtf"
+            accept=".pdf, .txt"
             id="document"
             className="hidden"
-          />
+          />*/}
 
           <label htmlFor="image">
             <svg
@@ -120,7 +120,12 @@ export default function ChattingTyping({
             className="absolute right-0 top-0 m-2 cursor-pointer bg-gray-400 rounded-full p-2"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              sendMessage(message, getCurrentTime(), userOpenDetails[0]?.id, isImage);
+              sendMessage(
+                message,
+                getCurrentTime(),
+                userOpenDetails[0]?.id,
+                isImage
+              );
               setIsImage(null);
               setMessage("");
             }}

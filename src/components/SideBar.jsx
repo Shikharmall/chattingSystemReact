@@ -80,12 +80,12 @@ export default function SideBar({
                 alt="userLogo"
                 className="rounded-full w-[30px] h-[30px] m-1 mr-3"
               />
-              <div className="inline lg:hidden">
+              <div className="inline md:hidden">
                 <p className="text-white text-opacity-90 font-semibold">
                   {item.name.substring(0,2).toUpperCase()}
                 </p>
               </div>
-              <div className="hidden lg:inline">
+              <div className="hidden md:inline ">
                 <p className="text-white text-opacity-90 font-semibold">
                   {item.name}
                 </p>
