@@ -2,14 +2,22 @@
 
 ## Clone Project
 
-   npm clone 
+   npm clone https://github.com/Shikharmall/chattingSystemReact.git
+   
    npm install
+   
    npm run dev
 
 ## Features
 
   Users can send messages inform of text and images.
+  
   Users can serach for other users.
-  Delete the message.
+  
+  Clear whole chat.
+
+  
+
+  
   
    
