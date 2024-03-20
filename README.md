@@ -1,2 +1,2 @@
-# Chatting System (React JS + Tailwind CSS)
+# Chatting System (React JS (VITE) + Tailwind CSS)
 

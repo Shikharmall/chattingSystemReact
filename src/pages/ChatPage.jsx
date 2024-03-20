@@ -6,23 +6,27 @@ import userList from "../db/UserData";
 export default function ChatPage() {
   const [userOpenDetails, setUserOpenDetails] = useState([]);
 
-  const currentUserFunc = (name, image) => {
-    setUserOpenDetails([{ name: name, image: image }]);
+  const currentUserFunc = (name, image, userId) => {
+    setUserOpenDetails([{ name: name, image: image, userId: userId }]);
   };
 
   useEffect(() => {
     setUserOpenDetails([
       ...userOpenDetails,
-      { name: userList[0]?.name, image: userList[0]?.image },
+      {
+        name: userList[0]?.name,
+        image: userList[0]?.image,
+        userId: userList[0]?.id,
+      },
     ]);
   }, []);
 
   const [messageList, setMessageList] = useState([]);
 
-  const sendMessage = (message, currentTime) => {
+  const sendMessage = (message, currentTime, userId) => {
     setMessageList((prevMessageList) => [
       ...prevMessageList,
-      { content: message, time: currentTime },
+      { content: message, time: currentTime, userId: userId },
     ]);
   };
 

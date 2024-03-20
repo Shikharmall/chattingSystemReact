@@ -57,33 +57,37 @@ export default function ChattingTyping({
         {messageList &&
           messageList.map((item, index) => (
             <div key={index}>
-              <div className="my-2 flex justify-end items-center">
-                <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg text-[14px]">
-                  {item.content}
-                  <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
-                    {item.time}
-                  </span>
-                </p>
-                <img
-                  src={img}
-                  alt="userLogo"
-                  className="rounded-full w-[30px] h-[30px] mr-3"
-                />
-              </div>
+              {item.userId === userOpenDetails[0]?.userId ? (
+                <>
+                  <div className="my-2 flex justify-end items-center">
+                    <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 mr-2 rounded-tr-lg rounded-bl-lg text-[14px]">
+                      {item.content}
+                      <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
+                        {item.time}
+                      </span>
+                    </p>
+                    <img
+                      src={img}
+                      alt="userLogo"
+                      className="rounded-full w-[30px] h-[30px] mr-3"
+                    />
+                  </div>
 
-              <div className="my-2 flex justify-start items-center">
-                <img
-                  src={userOpenDetails[0].image}
-                  alt="userLogo"
-                  className="rounded-full w-[30px] h-[30px] ml-3"
-                />
-                <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[14px]">
-                  {item.content}
-                  <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
-                    {item.time}
-                  </span>
-                </p>
-              </div>
+                  <div className="my-2 flex justify-start items-center">
+                    <img
+                      src={userOpenDetails[0].image}
+                      alt="userLogo"
+                      className="rounded-full w-[30px] h-[30px] ml-3"
+                    />
+                    <p className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[14px]">
+                      {item.content}
+                      <span className="text-white text-opacity-90 font-semibold p-2 bg-blue-500 ml-2 rounded-tl-lg rounded-br-lg text-[10px]">
+                        {item.time}
+                      </span>
+                    </p>
+                  </div>
+                </>
+              ) : null}
             </div>
           ))}
       </div>
@@ -153,7 +157,7 @@ export default function ChattingTyping({
             className="absolute right-0 top-0 m-2 cursor-pointer bg-gray-400 rounded-full p-2"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              sendMessage(message, getCurrentTime());
+              sendMessage(message, getCurrentTime(), userOpenDetails[0]?.userId);
               setMessage("");
             }}
           >

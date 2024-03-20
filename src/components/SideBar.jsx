@@ -73,7 +73,7 @@ export default function SideBar({
               }`}
               key={index}
               onClick={() => {
-                currentUserFunc(item?.name, item?.image);
+                currentUserFunc(item?.name, item?.image, item?.id);
               }}
             >
               <img
