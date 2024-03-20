@@ -18,7 +18,7 @@ export default function MessageContainer({
 
   return (
     <div
-      className="w-[100%] h-[80%] lg:h-[83%] flex flex-col overflow-y-scroll"
+      className="w-[100%] h-[80%] xl:h-[83%] flex flex-col overflow-y-scroll"
       id="custom-scrollbar"
       ref={customScrollbarRef}
     >
