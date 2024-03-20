@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import img from "../image/user.png";
 
 export default function MessageContainer({
@@ -7,29 +7,20 @@ export default function MessageContainer({
   isImage,
   removeImg,
 }) {
-  
-  /*useEffect(() => {
-    document.querySelector("custom-scrollbar").style.scrollBehavior = "auto";
-    window.scroll({ bottom: 0 });
-    document.querySelector("custom-scrollbar").style.scrollBehavior = "";
-  }, [messageList]); */
+  const customScrollbarRef = useRef(null);
 
   useEffect(() => {
-    const customScrollbar = document.getElementById("custom-scrollbar");
-    //console.log(customScrollbar);
-    customScrollbar.style.scrollBehavior = "auto";
-    window.scroll({ top: customScrollbar.scrollHeight, behavior: "auto" });
-    customScrollbar.style.scrollBehavior = "";
-    
-    // console.log("Message list updated");
+    if (customScrollbarRef.current) {
+      customScrollbarRef.current.scrollTop =
+        customScrollbarRef.current.scrollHeight;
+    }
   }, [messageList]);
-
- 
 
   return (
     <div
       className="w-[100%] h-[80%] lg-[83%] flex flex-col overflow-y-scroll"
       id="custom-scrollbar"
+      ref={customScrollbarRef}
     >
       {/* h-[80%] */}
       {isImage ? (
@@ -59,7 +50,7 @@ export default function MessageContainer({
         <>
           {messageList &&
             messageList.map((item, index) => (
-              <div key={index} >
+              <div key={index}>
                 {item.id === userOpenDetails[0]?.id ? (
                   <>
                     <div className="my-2 flex justify-end items-end">
